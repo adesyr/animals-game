@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>animals-game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-list>
+  <ion-item *ngFor="let item of animals" (click)="guess(item)">
+    <ion-avatar >
+      <ion-img src="/assets/{{ item.image }}"></ion-img>
+    </ion-avatar>
+  <h3> {{ item.title }}</h3>
+
+  <p slot="end"> {{ item.desc }}</p>
+
+  <ion-icon name="musical-notes" *ngIf="item.playing" slot="end"></ion-icon>
+</ion-item>
+</ion-list>
+
+</ion-content>
+
+<!-- Pour que le bouton reste sur la page on faot un ion-footer -->
+<ion-footer>
+  <!-- ion toolbar pour ne pas avoir le fond noir -->
+  <ion-toolbar>
+  <ion-button (click)="play()" expand="block">JOUER</ion-button>
+</ion-toolbar>
+</ion-footer>

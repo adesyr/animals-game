@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>converter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<!-- Fonction pour récuperer formulaire caché avec un bouton -->
+<!-- le changement de couleur du bouton est passé en arguments de la fonction,
+de l'événement 'click' -->
+  <ion-button expand="block" (click)="showHideForm('danger')" [color]= "buttonColor">{{ buttonName }}</ion-button>
+ <h2 *ngIf="isHidden">Le formulaire est masqué</h2>
+
+
+  <ion-list [hidden]="isHidden">
+    <ion-item>
+      <ion-label position="floating">Montant en Yen </ion-label>
+      <ion-input [(ngModel)]="yenValue"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Devise</ion-label>
+
+        <ion-select [(ngModel)]="selectedCurrency">
+          <ion-select-option *ngFor="let currency of currencies"
+          [value]="currency">{{ currency.label }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ (yenValue * selectedCurrency.rate) | number:'1.2-4'}}
+        {{ selectedCurrency.symbol }}
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item *ngFor="let country of countries">
+      {{ country }}
+    </ion-item>
+  </ion-list>
+</ion-content>

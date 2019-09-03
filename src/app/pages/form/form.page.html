@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- ON RECUPERE LA VARIABLE NOM DANS LE TITRE -->
+  <!-- ON PEUT METTRE DES EXPRESSIONS DIRECTEMENT -->
+
+  <h3>Bonjour {{ name }} {{ 2+1 }}</h3>
+
+
+  <!-- ON RECUPERE LA VARIABLE COLOR ENTRE [] -->
+  <!-- ***************input****************** -->
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating" [color] = "color">Nom</ion-label>
+
+      <!-- AVEC [(ngModel)] = "name" LE NOM SAISI CHANGE EN TPS REEL DANS LE TITRE -->
+      <ion-input type="text" [(ngModel)] = "name"></ion-input>
+    </ion-item>
+
+    <!-- checkbox -->
+    <!-- SI LE NOM DANS LA VARIABLE EST VIDE LA LIGNE CGV NE S'AFFICHE PAS -->
+    <ion-item [hidden] = "name==''">
+    <ion-label text-right>J'accepte les CGV</ion-label>
+    <ion-checkbox slot="start" mode="ios"></ion-checkbox>
+    </ion-item>
+
+    <!-- Bouton radio -->
+    <ion-radio-group>
+      <ion-list-header>
+        Genre
+      </ion-list-header>
+        <ion-item>
+          <ion-label>Homme</ion-label>
+          <ion-radio slot="start"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Femme</ion-label>
+            <ion-radio slot="start"></ion-radio>
+          </ion-item>
+    </ion-radio-group>
+
+    <!-- *************sélection dans choix multiple*************** -->
+    <!-- Le fait d'ajouter multiple permet de sélectionner plusieurs choix -->
+    <!-- On peut modifier le texte des bouton avec cancelText et okText -->
+    <!-- On peut changer interface -->
+    <ion-item>
+      <ion-label floating>Choisir un langage</ion-label>
+      <ion-select multiple cancelText="Annuler" okText="Valider" interface="popover">
+        <ion-select-option>Java</ion-select-option>
+        <ion-select-option>Go</ion-select-option>
+        <ion-select-option>Scala</ion-select-option>
+        <ion-select-option>Haskell</ion-select-option>
+        <ion-select-option>Kotlin</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <!-- Cééer une glissière -->
+    <!-- Permet d'avoir une valeur affiché quand on reste appuyé sur le curseur -->
+    <!-- step pour afficher ici par ex de 2 en 2 -->
+    <!-- snaps pour rester fixe sur une valeur et pas entre 2 -->
+    <!-- ticks pour cacher affichage de la graduation -->
+    <!-- dualKnobs pour avoir 2 curseurs, une fourchette  -->
+    <ion-item>
+    <ion-range min="1" max="10" pin="true" step="2" snaps="true" ticks="false"
+    dualKnobs="true"></ion-range>
+</ion-item>
+
+<!-- un toggle  bouton activation/désactivation -->
+<ion-item>
+  <ion-item>Couper le son</ion-item>
+    <ion-toggle slot="start"></ion-toggle>
+
+</ion-item>
+  </ion-list>
+</ion-content>
