@@ -85,6 +85,8 @@ export class AnimalsGamePage implements OnInit {
   // Instancier un audio
   private media;
 
+  public isReorderDisabled = "true";
+
 
   constructor(private toastCtrl: ToastController) {}
 
@@ -140,5 +142,10 @@ export class AnimalsGamePage implements OnInit {
     });
 
     toast.present();
+  }
+
+  doReorder(event){
+    event.detail.complete(this.animals);
+    console.log(this.animals);
   }
 }

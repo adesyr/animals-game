@@ -1,30 +1,41 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>animals-game</ion-title>
+
+    <!-- bouton pour activer ou desactiver le toggle -->
+    <ion-button
+    (click)="isReorderDisabled= ! isReorderDisabled"
+    [color]="isReorderDisabled? 'danger': 'success'">Reorder</ion-button>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-<ion-list>
-  <ion-item *ngFor="let item of animals" (click)="guess(item)">
-    <ion-avatar >
-      <ion-img src="/assets/{{ item.image }}"></ion-img>
-    </ion-avatar>
-  <h3> {{ item.title }}</h3>
+{{ 'lady ada lovelace' | capitalize }}
 
-  <p slot="end"> {{ item.desc }}</p>
+  <ion-list>
+    <ion-reorder-group [disabled]="isReorderDisabled" (ionItemReorder)="doReorder($event)">
 
-  <ion-icon name="musical-notes" *ngIf="item.playing" slot="end"></ion-icon>
-</ion-item>
-</ion-list>
+      <ion-item *ngFor="let item of animals" (click)="guess(item)">
+        <ion-avatar>
+          <ion-img src="/assets/{{ item.image }}"></ion-img>
+        </ion-avatar>
+        <h3> {{ item.title | capitalize }}</h3>
 
+        <p slot="end"> {{ item.desc | capitalize }}</p>
+
+        <ion-icon name="musical-notes" *ngIf="item.playing" slot="end"></ion-icon>
+        <ion-reorder slot="end"></ion-reorder >
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
 </ion-content>
 
 <!-- Pour que le bouton reste sur la page on faot un ion-footer -->
 <ion-footer>
   <!-- ion toolbar pour ne pas avoir le fond noir -->
   <ion-toolbar>
-  <ion-button (click)="play()" expand="block">JOUER</ion-button>
-</ion-toolbar>
+    <ion-button (click)="play()" expand="block">JOUER</ion-button>
+  </ion-toolbar>
 </ion-footer>
